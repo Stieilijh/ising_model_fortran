@@ -25,9 +25,10 @@ contains
 
       ! thermalization
       do sweep = 1, n_therm
-         do i = 1, Lx*Ly
-            call metropolis_step_2d(spin, Lx, Ly, beta)
-         end do
+         call metropolis_sweep_2d(spin,Lx,Ly,beta)
+         !do i = 1, Lx*Ly
+         !  call metropolis_step_2d(spin, Lx, Ly, beta)
+         !end do
       end do
 
       m_avg = 0.0_dp
@@ -37,10 +38,10 @@ contains
 
       ! measurement
       do sweep = 1, n_steps
-
-         do i = 1, Lx*Ly
-            call metropolis_step_2d(spin, Lx, Ly, beta)
-         end do
+         call metropolis_sweep_2d(spin,Lx,Ly,beta)
+         !do i = 1, Lx*Ly
+         !call metropolis_step_2d(spin, Lx, Ly, beta)
+         !end do
 
          m = magnetization_2d(spin, Lx, Ly)
          e = energy_2d(spin, Lx, Ly)
